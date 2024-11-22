@@ -54,20 +54,21 @@ public class ServiceUserController {
 
 		// when there is no user with passed in email, then user is inserted to db
 		serviceUserRepository.save(serviceUser);
-		
-		// and SENT IN user is returned so that  ID = 0 distinguishes from above and
+
+		// and SENT IN user is returned so that ID = 0 distinguishes from above and
 		// indicates that it's not e user that has existed before
 		serviceUser.setId(0);
 		return serviceUser;
 	}
 
-	// to UPDATE user (user name or password) to set new password or user's name if missing or if password is confirmed
+	// to UPDATE user (user name or password) to set new password or user's name if
+	// missing or if password is confirmed
 	@PutMapping("")
 	public ServiceUser updateServiceUser(@RequestBody ServiceUser serviceUser) {
 
 		// gets existing user by email
 		ServiceUser existingServiceUser = serviceUserRepository.findByEmail(serviceUser.getEmail());
-		
+
 		// check if received email is present exist in existing users
 		if (existingServiceUser == null)
 			// if no, return null
@@ -76,12 +77,12 @@ public class ServiceUserController {
 		// if they do, modify it
 		existingServiceUser.setUserName(serviceUser.getUserName());
 		existingServiceUser.setPassword(serviceUser.getPassword());
-		existingServiceUser.setEmailConfirmed(serviceUser.isEmailConfirmed());
-		
-		//and save the changes
+		existingServiceUser.setEmailStatus(serviceUser.getEmailStatus());
+
+		// and save the changes
 		serviceUserRepository.save(existingServiceUser);
 
-		//and returned changed user
+		// and returned changed user
 		return existingServiceUser;
 	}
 }

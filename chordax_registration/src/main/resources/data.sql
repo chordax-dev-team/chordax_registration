@@ -1,1 +1,1 @@
-INSERT INTO service_user(user_name, email, password, email_confirmed) VALUES ('Piotr', 'piotr.a.bar@gmail.com', 'password', true);
+INSERT INTO service_user(user_name, email, password, email_status) VALUES ('Piotr', 'piotr.a.bar@gmail.com', 'password', 'CONFIRMED');

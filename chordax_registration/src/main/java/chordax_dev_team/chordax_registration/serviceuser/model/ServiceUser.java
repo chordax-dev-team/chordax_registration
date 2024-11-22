@@ -3,6 +3,8 @@ package chordax_dev_team.chordax_registration.serviceuser.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +37,7 @@ public class ServiceUser {
 	private String password;
 	
 	@Schema(nullable = false, description="Status of user's email confirmation.")
-	@Column
-	private boolean emailConfirmed = false;
+	@Enumerated(EnumType.STRING)
+	private EmailStatus emailStatus = EmailStatus.NOT_CONFIRMED;
 
 }
